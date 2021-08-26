@@ -1,13 +1,13 @@
 package com.bridgelabz.addressbook;
 
 public class Contact {
-	private final String firstName;
-	private final String lastName;
-	private final String city;
-	private final String state;
-	private final String zip;
-	private final String phoneNumber;
-	private final String email;
+	private String firstName;
+	private String lastName;
+	private String city;
+	private String state;
+	private String zip;
+	private String phoneNumber;
+	private String email;
 	
 	public Contact(String firstName, String lastName, String city, String state, String zip, String phoneNumber,
 			String email) {
@@ -38,6 +38,34 @@ public class Contact {
 
 	public String getZip() {
 		return zip;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhoneNumber() {
