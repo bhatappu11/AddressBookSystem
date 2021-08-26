@@ -18,9 +18,7 @@ public class AddressBook {
 		case 1:
 			System.out.println("enter new first name");
 			String newFirstName = sc.next();
-			addressBook.remove(firstName);
 			contact.setFirstName(newFirstName);
-			addressBook.put(newFirstName, contact);
 			break;
 		case 2:
 			System.out.println("Enter new last name");
@@ -54,6 +52,12 @@ public class AddressBook {
 		System.out.println("Editing done, the new details are: ");
 		System.out.println(contact.getFirstName()+" "+contact.getLastName()+" "+contact.getCity()+" "+contact.getState()+" "+contact.getZip()+" "+contact.getPhoneNumber()+" "+contact.getEmail());
 		
+	}
+	public void deleteContact() {
+		System.out.println("Enter the first name of the contact to delete");
+		String firstName = sc.next();
+		addressBook.remove(firstName.toLowerCase());
+		System.out.println("Contact is deleted");
 	}
 	
 	public void addContact() {
