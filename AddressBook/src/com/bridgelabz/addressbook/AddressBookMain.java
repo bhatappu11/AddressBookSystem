@@ -8,6 +8,7 @@ public class AddressBookMain {
 		System.out.println("Welcome to Address Book System");
 		AddressBook addressBook = new AddressBook();
 		addressBook.addContact();
+		addressBook.editContact();
 	}
 
 }
