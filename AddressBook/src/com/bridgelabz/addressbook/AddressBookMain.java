@@ -23,7 +23,7 @@ public class AddressBookMain {
 				addressBook.editContact();
 				break;
 			case 3:
-				System.out.println("Enter phone number to be deleted: ");
+				System.out.println("Enter the details to edit: ");
 				addressBook.deleteContact();
 				break;
 			default:

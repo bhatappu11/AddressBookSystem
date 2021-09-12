@@ -4,7 +4,6 @@ package com.bridgelabz.addressbook;
 import java.util.*;
  
 public class AddressBook {
-	//private Contact[] contacts = new Contact[20];
 	private HashMap<String, Contact> contacts;
 	Scanner sc = new Scanner(System.in);
 	private int numOfContacts = 0;
@@ -67,11 +66,14 @@ public class AddressBook {
 }
 		
 	public void deleteContact() {
-
-		System.out.println("Enter phone number of person you want to delete:");
-		String phone = sc.nextLine();
-		contacts.remove(phone);
-		System.out.println("Contact deleted");
+		System.out.println("Enter first name and phone number of person you want to delete:");
+		String firstName = sc.next();
+		if(contacts.remove(firstName) != null) {
+			System.out.println("Successfully Deleted");
+		}
+		else
+			System.out.println("Person does not exist"); return;
+		
 	}
 	
 	public void addContact() {
@@ -92,7 +94,12 @@ public class AddressBook {
 		String email = sc.nextLine();
 		
 		Contact contact = new Contact(firstName,lastName,city,state,zip,phoneNumber,email);
-		contacts.put(firstName, contact);
-		numOfContacts++;
+		if (contacts.get(firstName) == null) {
+			contacts.put(firstName, contact);
+			numOfContacts++;
+		} else {
+			System.out.println("DUPLICATE ENTRY: Name entered already exists");
+			return;
+		}
 	}
 }
