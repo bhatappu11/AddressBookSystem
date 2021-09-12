@@ -133,4 +133,14 @@ public class AddressBook {
 		contactsByCity.get(state).add(contact);
 
 	}
+	public void printCountByCity() {
+		for (String city: contactsByCity.keySet()) {
+			System.out.println("City name :"+city+" Num of persons :"+contactsByCity.get(city).size());
+		}		
+	}
+	public void printCountByState() {
+		for (String state: contactsByState.keySet()) {
+			System.out.println("State name :"+state+" Num of persons :"+contactsByState.get(state).size());
+		}			
+	}
 }
