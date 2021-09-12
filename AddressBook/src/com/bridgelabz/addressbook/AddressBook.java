@@ -5,12 +5,16 @@ import java.util.*;
  
 public class AddressBook {
 	private HashMap<String, Contact> contacts;
+	private HashMap<String, ArrayList<Contact>> contactsByCity;
+	private HashMap<String, ArrayList<Contact>> contactsByState;
 	Scanner sc = new Scanner(System.in);
 	private int numOfContacts;
 	
 	
 	public AddressBook() {
 		this.contacts = new HashMap<String, Contact>();
+		this.contactsByCity = new HashMap<>();
+		this.contactsByState = new HashMap<>();
 		this.numOfContacts = 0;
 	}
 	public void findContactInCity(String cityName) {
@@ -118,5 +122,15 @@ public class AddressBook {
 			System.out.println("DUPLICATE ENTRY: Name entered already exists");
 			return;
 		}
+		if(contactsByCity.get(city) == null) {
+			contactsByCity.put(city,new ArrayList<>());
+		}
+		contactsByCity.get(city).add(contact);
+		
+		if(contactsByCity.get(state) == null) {
+			contactsByCity.put(state,new ArrayList<>());
+		}
+		contactsByCity.get(state).add(contact);
+
 	}
 }
