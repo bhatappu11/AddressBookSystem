@@ -19,7 +19,7 @@ public class AddressBookMain {
 				addressBook.addContact();
 				break;
 			case 2 :
-				System.out.println("Enter the contact phone number to edit");
+				System.out.println("Enter the details to edit");
 				addressBook.editContact();
 				break;
 			case 3:
