@@ -6,12 +6,29 @@ import java.util.*;
 public class AddressBook {
 	private HashMap<String, Contact> contacts;
 	Scanner sc = new Scanner(System.in);
-	private int numOfContacts = 0;
+	private int numOfContacts;
 	
 	
 	public AddressBook() {
 		this.contacts = new HashMap<String, Contact>();
 		this.numOfContacts = 0;
+	}
+	public void findContactInCity(String cityName) {
+		for(Contact contact: contacts.values()) {
+			if(contact.getCity().equals(cityName)) {
+				System.out.println("Name : "+contact.getFirstName()+"-> City : "+cityName);
+			}
+		}
+
+	}
+	
+	public void findContactInState(String stateName) {
+		for(Contact contact: contacts.values()) {
+			if(contact.getState().equals(stateName)) {
+				System.out.println("Name : "+contact.getFirstName()+"-> State : "+stateName);
+			}
+		}
+
 	}
 
 	public void editContact() {
