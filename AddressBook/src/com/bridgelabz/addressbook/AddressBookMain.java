@@ -3,51 +3,8 @@ package com.bridgelabz.addressbook;
 import java.util.*;
 
 public class AddressBookMain {
-	private static HashMap<String, AddressBook> addressBooks;
+	public static AddressBookList addressBookList = new AddressBookList();
 	
-	public AddressBookMain() {
-		this.addressBooks = new HashMap<>();
-	}
-
-	
-	public void searchAcrossByCity(String city) {
-		for(AddressBook addressBook : addressBooks.values()) {
-			addressBook.findContactInCity(city);
-		}
-	}
-	
-	public void searchAcrossByState(String state) {
-		for(AddressBook addressBook : addressBooks.values()) {
-			addressBook.findContactInState(state);
-		}
-	}
-	
-	private static void addressMenu(AddressBook addressBook) {
-		Scanner sc = new Scanner(System.in);
-		int option = 0;
-		boolean exit = true;
-		while(exit) {
-			System.out.println("Select option \n1: Add Contact.  \n2: Edit Existing Contact. \n3:Delete contact.");
-			option  = sc.nextInt();
-			switch(option) {
-			case 1 :
-				addressBook.addContact();
-				break;
-			case 2 :
-				System.out.println("Enter the details to edit");
-				addressBook.editContact();
-				break;
-			case 3:
-				System.out.println("Enter the details to edit: ");
-				addressBook.deleteContact();
-				break;
-			default:
-				exit = false;
-
-			}
-			System.out.println();
-		}
-	}
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book System");
 		AddressBookMain addressBookMain = new AddressBookMain();
@@ -60,16 +17,16 @@ public class AddressBookMain {
 				System.out.println("Enter the address book name");
 				String name = sc.next();
 				AddressBook addressBook = new AddressBook();
-				addressBooks.put(name, addressBook);
+				addressBookList.add(name, addressBook);
 				break;
 			case 2:
 				System.out.println("Enter the name of Address Book");
 				String book = sc.next();
-				if(addressBooks.get(book)==null)
+				if(addressBookList.get(book)==null)
 					System.out.println("Address Book does not exist");
 				else {
-					AddressBook bookName = addressBooks.get(book);
-					addressMenu(bookName);
+					AddressBook bookName = addressBookList.get(book);
+					addressBookList.addressMenu(bookName);
 				}
 				break;
 			case 3:
@@ -77,11 +34,11 @@ public class AddressBookMain {
 				int choice=sc.nextInt();
 				if(choice==1) {
 					System.out.println("Enter city name");
-					addressBookMain.searchAcrossByCity(sc.next());
+					addressBookList.searchAcrossByCity(sc.next());
 				}
 				else if(choice==2) {
 					System.out.println("Enter state name");
-					addressBookMain.searchAcrossByState(sc.next());
+					addressBookList.searchAcrossByState(sc.next());
 				}
 				else
 					System.out.println("Invalid choice");
@@ -90,9 +47,9 @@ public class AddressBookMain {
 				System.out.println("Options: 1:Count by city 2.Count by state");
 				int option = sc.nextInt();
 				if(option==1)
-					addressBookMain.countByCity();
+					addressBookList.countByCity();
 				else if(option==2)
-					addressBookMain.countByState();
+					addressBookList.countByState();
 				else
 					System.out.println("Invalid choice");
 				break;
@@ -102,20 +59,5 @@ public class AddressBookMain {
 			}
 	}
 
-	}
-
-
-	private void countByState() {
-		for(AddressBook addressBook : addressBooks.values()) {
-			addressBook.printCountByState();
-		}
-		
-	}
-
-
-	private void countByCity() {
-		for(AddressBook addressBook : addressBooks.values()) {
-			addressBook.printCountByCity();
-		}		
 	}
 }
