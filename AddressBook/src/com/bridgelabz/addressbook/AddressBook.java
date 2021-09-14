@@ -4,20 +4,20 @@ package com.bridgelabz.addressbook;
 import java.util.*;
  
 public class AddressBook {
-	private HashMap<String, Contact> contacts;
+	private List<Contact> contacts;
 	Scanner sc = new Scanner(System.in);
 	private int numOfContacts = 0;
 	
 	
 	public AddressBook() {
-		this.contacts = new HashMap<String, Contact>();
+		this.contacts = new LinkedList<Contact>();
 		this.numOfContacts = 0;
 	}
 
 	public void editContact() {
 		System.out.println("Enter the first name of the contact to edit");
 		String firstName = sc.next();
-		Contact contactToChange = contacts.get(firstName);
+		Contact contactToChange = contacts.stream().filter(c -> c.getFirstName().equals(firstName)).findFirst().orElse(null);
 		if(contactToChange == null) {
 			System.out.println("contact does not exist");
 			return;
@@ -66,13 +66,16 @@ public class AddressBook {
 }
 		
 	public void deleteContact() {
-		System.out.println("Enter first name and phone number of person you want to delete:");
+		System.out.println("Enter first name of person you want to delete:");
 		String firstName = sc.next();
-		if(contacts.remove(firstName) != null) {
-			System.out.println("Successfully Deleted");
+		for(int index=0;index<contacts.size();index++) {
+			if(contacts.get(index).getFirstName().equals(firstName)) {
+				contacts.remove(index);
+				System.out.println("Successfully Deleted");
+				return;
+			}
 		}
-		else
-			System.out.println("Person does not exist"); return;
+		System.out.println("contact does not exist"); return;
 		
 	}
 	
@@ -94,12 +97,19 @@ public class AddressBook {
 		String email = sc.nextLine();
 		
 		Contact contact = new Contact(firstName,lastName,city,state,zip,phoneNumber,email);
-		if (contacts.get(firstName) == null) {
-			contacts.put(firstName, contact);
+		if(!checkIfExists(contact)) {
+			contacts.add(contact);
 			numOfContacts++;
-		} else {
+		}
+		else {
 			System.out.println("DUPLICATE ENTRY: Name entered already exists");
 			return;
+			}
 		}
+
+	private boolean checkIfExists(Contact contact) {
+		return contacts.stream().filter(c -> c.equals(contact)).findFirst().orElse(null) != null;
+		
 	}
 }
+
