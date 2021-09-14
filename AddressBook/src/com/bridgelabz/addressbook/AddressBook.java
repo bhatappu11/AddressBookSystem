@@ -5,8 +5,8 @@ import java.util.*;
  
 public class AddressBook {
 	private HashMap<String, Contact> contacts;
-	private HashMap<String, ArrayList<Contact>> contactsByCity;
-	private HashMap<String, ArrayList<Contact>> contactsByState;
+	private HashMap<String, LinkedList<Contact>> contactsByCity;
+	private HashMap<String, LinkedList<Contact>> contactsByState;
 	Scanner sc = new Scanner(System.in);
 	private int numOfContacts;
 	
@@ -123,14 +123,14 @@ public class AddressBook {
 			return;
 		}
 		if(contactsByCity.get(city) == null) {
-			contactsByCity.put(city,new ArrayList<>());
+			contactsByCity.put(city,new LinkedList<>());
 		}
 		contactsByCity.get(city).add(contact);
 		
-		if(contactsByCity.get(state) == null) {
-			contactsByCity.put(state,new ArrayList<>());
+		if(contactsByState.get(state) == null) {
+			contactsByState.put(state,new LinkedList<>());
 		}
-		contactsByCity.get(state).add(contact);
+		contactsByState.get(state).add(contact);
 
 	}
 	public void printCountByCity() {
