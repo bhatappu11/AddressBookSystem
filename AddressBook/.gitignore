@@ -1,4 +1,18 @@
-/bin/
+# Ignore Gradle project-specific cache directory
+.gradle
 .project
-.settings/
 .classpath
+.settings/
+lib/bin/
+Thumbs.db
+.DS_Store
+.gradle
+build/
+out/
+.idea
+.iml
+.ipr
+*.iws 
+/bin/
+# Ignore Gradle build output directory
+build
